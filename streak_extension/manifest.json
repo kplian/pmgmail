@@ -1,0 +1,26 @@
+{
+   "background": {
+      "scripts": [ "background.js" ]
+   },
+   "content_scripts": [ { 
+      "js": [ "messenger.js", "ajaxer.js", "extension.js", "bootstrap.js", "bridge.js" ],
+      "matches": [ "https://mail.google.com/*", "http://mail.google.com/*" ],
+      "run_at": "document_end"
+   } ],
+   "content_security_policy": "script-src 'self' https://*.google.com https://*.mailfoogae.appspot.com https://mailfoogae.appspot.com http://localhost http://localhost:8888; object-src 'self'",
+   "default_locale": "en",
+   "description": "__MSG_appDesc__",
+   "homepage_url": "http://www.streak.com",
+   "icons": {
+      "128": "webstoreIcon128.png",
+      "16": "webstoreIcon16.png",
+      "48": "webstoreIcon48.png"
+   },
+   "manifest_version": 2,
+   "minimum_chrome_version": "15.0",
+   "name": "__MSG_appName__",
+   "permissions": [ "cookies", "management", "*://mail.google.com/", "*://mailfoogae.appspot.com/", "*://*.mailfoogae.appspot.com/" ],
+   "update_url": "https://clients2.google.com/service/update2/crx",
+   "version": "6.3",
+   "web_accessible_resources": [ "blank.png" ]
+}
