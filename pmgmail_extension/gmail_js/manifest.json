@@ -5,16 +5,20 @@
    "content_scripts": [ {
       "js": [ "load.js"],
       "matches": [ "https://*.google.com/*" ]
+
    } ],
    "content_security_policy": "script-src 'self' https://cdn.firebase.com https://signal.firebaseio.com; object-src 'self'",
-   "description": "Rewrite your inbox.",
+   "default_locale": "en",
+   "description": "__MSG_appDesc__",
    "icons": {
-      "256": "Signal.png"
+      "128": "images/webstoreIcon128.png",
+	  "16": "images/webstoreIcon16.png",
+	  "48": "images/webstoreIcon48.png"
    },
    "manifest_version": 2,
-   "name": "KPLIAN - Process Maker for Gmail",
+   "name": "__MSG_appName__",
    "permissions": [ "storage" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "0.90",
-   "web_accessible_resources": [ "load.js", "Signal.png", "gmail.js", "main.js" ]
+   "version": "1.0",
+   "web_accessible_resources": [ "load.js", "lib/gmail.js", "lib/gmail_ui.js","main.js", "css/estilo_menu.css","lib/jquery-ui.js","css/jquery-ui.css","html/popup1.html"]
 }

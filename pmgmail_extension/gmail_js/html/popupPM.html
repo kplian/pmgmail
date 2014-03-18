@@ -1,0 +1,452 @@
+<script type="text/javascript">
+$("#signal-popup").ready(function() {
+    alert('ON READY POPUP')
+})
+alert('al cargar el archivo del poppup')
+
+</script>
+
+<style>
+
+.red_text {
+    color: red;
+}
+
+#signal-popup {
+    padding: 20px 10px 6px 30px;
+
+    width: 660px;
+    height: 366px;
+
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 10px #666;
+
+    position: relative;
+    z-index: 10;
+}
+
+#signal-dismiss {
+    float: right;
+
+    font-family: 'Helvetica Neue', Arial;
+    font-size: 12px;
+    font-weight: bold;
+    color: #252525;
+
+    cursor: pointer;
+
+    z-index: 30;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+#signal-dismiss:hover {
+    border-bottom: 1px solid #ccc;
+}
+
+#signal-watermark {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    background-image: url('http://www.colosa.com/images/colosa-logo.png');
+    background-size: 566px 601px;
+    background-position: -60px -55px;
+    z-index: 20;
+
+    width: 506px;
+    height: 385px;
+    opacity: 0.02;
+    overflow: hidden;
+}
+
+#h1 {
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial;
+    font-size: 36px;
+    font-weight: 500;
+    color: #222;
+
+    z-index: 100;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+#h2 {
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial;
+    font-size: 18px;
+    font-weight: 500;
+    color: #222;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+#h22 {
+    margin: 0;
+    margin-top: 10px;
+    font-family: 'Helvetica Neue', Arial;
+    font-size: 18px;
+    font-weight: 500;
+    color: #222;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+#h3 {
+    margin: 0;
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Arial;
+    font-weight: 500;
+
+    color: #777;
+    -webkit-font-smoothing: antialiased;
+}
+
+#p {
+    margin: 0;
+
+    font-size: 16px;
+    font-family: 'Helvetica Neue', Arial;
+    font-weight: 400;
+    line-height: 24px;
+    color: #222;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+#p span {
+    padding: 3px 5px;
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+
+    font-size: 12px;
+    font-family: 'Helvetica Neue', Arial;
+    font-weight: 600;
+    color: #444;
+}
+
+#signal-on {
+    -webkit-box-shadow: inset 0 0 2px #ccc;
+    background-image: -webkit-linear-gradient(top, #ddd, #eee);
+}
+
+#signal-row {
+    position: relative;
+    margin: 20px 0 0 0;
+    width: 660px;
+    overflow: auto;
+
+    z-index: 100;
+}
+
+#signal-left {
+    float: left;
+    margin: 0 10px 0 0;
+    width: 120px;
+}
+
+#signal-right {
+    width: 500px;
+    padding: 0 0 0 20px;
+    float: left;
+
+    border-left: 1px solid #e3e3e3;
+}
+
+#signal-right-fixed-height {
+    width: 500px;
+    padding: 0 0 0 20px;
+    float: left;
+
+    border-left: 1px solid #e3e3e3;
+    height: 150px;
+}
+
+#signal-authenticate {
+    display: block;
+    margin: 5px 0 8px;
+    padding: 6px 0;
+
+    width: 140px;
+
+    background-color: #d14836;
+    border-radius: 3px;
+    border: solid 2px #d14836;
+
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Arial;
+    font-weight: 500;
+    text-decoration: none;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+#signal-authenticate:hover {
+    color: #fff;
+    background-color: #c13e2c;
+    border-color: #c13e2c;
+}
+
+#signal-authenticate:active {
+    color: #fff;
+    background-color: #ad3727;
+    border-color: #ad3727;
+}
+
+#signal-authenticated {
+    display: block;
+    margin: 5px 0 8px;
+    padding: 6px 0;
+
+    width: 180px;
+
+    background-color: #59A80F;
+    border-radius: 3px;
+    border: solid 2px #59A80F;
+
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+#signal-edit-tooltip {
+    display: block;
+    position: relative;
+    left: 45px;
+
+    width: 400px;
+    padding: 15px 0 0 10px;
+
+    border-radius: 2px;
+
+    font-size: 14px;
+    font-family: 'Helvetica Neue';
+    font-weight: 500;
+    color: #222;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+#signal-edit-tooltip:before {
+    top: 4px;
+    left: -7px;
+    position: absolute;
+
+    content:'';
+    width: 10px; 
+    height: 25px; 
+    border-left: 1px solid #aaa;    
+    border-bottom: 1px solid #aaa;
+}
+
+#signal-highlight-tooltip {
+    display: none;
+    position: relative;
+    left: 115px;
+
+    width: 380px;
+    padding: 15px 0 0 10px;
+
+    border-radius: 2px;
+
+    font-size: 14px;
+    font-family: 'Helvetica Neue';
+    font-weight: 500;
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+}
+
+#signal-highlight-tooltip:before {
+    top: 4px;
+    left: -7px;
+    position: absolute;
+
+    content:'';
+    width: 10px; 
+    height: 25px; 
+    border-left: 1px solid #c6c6c6; 
+    border-bottom: 1px solid #c6c6c6;
+}
+
+#signal-restore-tooltip {
+    display: none;
+    position: relative;
+    left: 185px;
+
+    width: 280px;
+    padding: 15px 0 0 10px;
+
+    border-radius: 2px;
+
+    font-size: 14px;
+    font-family: 'Helvetica Neue';
+    font-weight: 500;
+    color: #222;
+    -webkit-font-smoothing: antialiased;
+}
+
+#signal-restore-tooltip:before {
+    top: 4px;
+    left: -7px;
+    position: absolute;
+
+    content:'';
+    width: 10px; 
+    height: 25px; 
+    border-left: 1px solid #c6c6c6; 
+    border-bottom: 1px solid #c6c6c6;
+}
+
+#signal-control {
+    margin: 5px 0 0 0;
+    width: 214px;
+}
+
+#signal-edit-button  {
+    padding: 0 8px;
+    height: 27px;
+    min-width: 54px;
+    display: inline-block;
+    
+    position: relative;
+    z-index: 1;
+    
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px 0 0 2px;
+    
+    color: #444;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 27px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+#signal-highlight-button {
+    margin-left: -5px;
+    padding: 0 8px;
+    height: 27px;
+    min-width: 54px;
+    display: inline-block;
+    
+    position: relative;
+    z-index: 1;
+    
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    
+    color: #444;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 27px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+#signal-restore-button {
+    margin-left: -5px;
+    padding: 0 8px;
+    height: 27px;
+    min-width: 54px;
+    display: inline-block;
+    
+    position: relative;
+    z-index: 1;
+    
+    background-image: -webkit-linear-gradient(top, #f5f5f5, #f1f1f1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0 2px 2px 0;    
+    
+    color: #444;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 27px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+#signal-edit:hover {
+    z-index: 3;
+    border: 1px solid #c6c6c6;
+    color: #333;
+}
+
+#signal-highlight:hover {
+    z-index: 3;
+    border: 1px solid #c6c6c6;
+    color: #333;
+}
+
+#signal-restore:hover {
+    z-index: 3;
+    border: 1px solid #c6c6c6;
+    color: #333;
+}
+
+#signal-edit:active {
+    -webkit-box-shadow: inset 0 1px 2px rgb(0,0,0,0.1);
+    background-image: -webkit-linear-gradient(top, #ddd, #eee);
+}
+
+#signal-highlight:active {
+    -webkit-box-shadow: inset 0 1px 2px rgb(0,0,0,0.1);
+    background-image: -webkit-linear-gradient(top, #ddd, #eee);
+}
+
+#signal-restore:active {
+    -webkit-box-shadow: inset 0 1px 2px rgb(0,0,0,0.1);
+    background-image: -webkit-linear-gradient(top, #ddd, #eee);
+}
+
+.upten {
+    margin-top:10px;
+}
+</style>
+
+<section id="signal-popup">
+<section id="signal-watermark"></section>
+    <h1 id="h1">Bienvenido al PopPup</h1>
+    <h2 id="h22">Beta v1.1</h2>
+    <h3 id="h3"><span class="red_text">Note: Version Beta ^ 4 </span></h2>
+
+    <section id="signal-row">
+        <section id="signal-left">
+            <h2 id="h2">Setup</h2>
+            <h3 id="h3">Allow Signal to access your Gmail.</h3>
+        </section>
+        <section id="signal-right">
+            <p id="p">To get started, authorize Signal with your Google Account.</p>
+            <!-- <a href="#" id="authenticated">&#10004; Signal is authenticated</a> -->
+            <a href="#" id="signal-authenticate" onClick='window.open("https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=680129480321.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Ftrysignal.com%2Fauth%2F&state=signup&approval_prompt=auto&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile","Signal Auth","toolbar=1,scrollbars=1,location=1,statusbar=0,menubar=1,resizable=1,width=800,height=600")'>Authorize Signal</a>
+        </section>
+    </section>
+    
+    <section id="signal-row">
+        <section id="signal-left">
+            <h2 id="h2">Usar LA extencion ..... </h2>
+            <h3 id="h3">It's so easy you can probably skip this.</h3>
+        </section>
+        
+    </section>
+
+    <section id="signal-dismiss" onClick='$("#black_overlay").remove();$("#signal_auth_modal").remove();if($("#signal-authenticated").length == 1) { location.reload(); }'>Dismiss</section>
+    
+</section>
