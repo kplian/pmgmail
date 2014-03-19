@@ -1,24 +1,25 @@
 {
-   "background": {
-      "scripts": [ "background.js" ]
-   },
-   "content_scripts": [ {
-      "js": [ "load.js"],
-      "matches": [ "https://*.google.com/*" ]
-
-   } ],
-   "content_security_policy": "script-src 'self' https://cdn.firebase.com https://signal.firebaseio.com; object-src 'self'",
-   "default_locale": "en",
-   "description": "__MSG_appDesc__",
-   "icons": {
-      "128": "images/webstoreIcon128.png",
-	  "16": "images/webstoreIcon16.png",
-	  "48": "images/webstoreIcon48.png"
-   },
-   "manifest_version": 2,
-   "name": "__MSG_appName__",
-   "permissions": [ "storage" ],
-   "update_url": "https://clients2.google.com/service/update2/crx",
-   "version": "1.0",
-   "web_accessible_resources": [ "load.js", "lib/gmail.js", "lib/gmail_ui.js","main.js", "css/estilo_menu.css","lib/jquery-ui.js","css/jquery-ui.css","html/popup1.html"]
+	"background": {
+		"scripts": ["background.js"]
+	},
+	"content_scripts": [
+		{
+			"js": ["load.js"],
+			"matches": ["https://*.google.com/*"]
+		}
+	],
+	"content_security_policy": "script-src 'self' https://gema.kplian.com  https://cdn.firebase.com https://signal.firebaseio.com; object-src 'self'",
+	"default_locale": "en",
+	"description": "__MSG_appDesc__",
+	"icons": {
+		"128": "images/webstoreIcon128.png",
+		"16": "images/webstoreIcon16.png",
+		"48": "images/webstoreIcon48.png"
+	},
+	"manifest_version": 2,
+	"name": "__MSG_appName__",
+	"permissions": ["storage" , "https://gema.kplian.com/gadget/ventana.php", "http://*/"],
+	"update_url": "https://clients2.google.com/service/update2/crx",
+	"version": "0.10",
+	"web_accessible_resources": ["load.js", "lib/gmail.js", "lib/gmail_ui.js", "main.js", "html/popupPM.html", "css/main.css", "css/jquery.css", "css/jquery-ui-1.8.4.custom.css"]
 }

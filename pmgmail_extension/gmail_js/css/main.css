@@ -1,0 +1,19 @@
+/* CSS Document */
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700);
+
+/*Para poner el +New al lado del menu PM*/
+.bbLinkWrapper .newPipeline {
+	position: absolute;
+	top: 0px;
+	right: -4px;
+}
+
+/*Para poner el icono al lado del menu PM*/
+.bentoBoxIndicator {
+	height: 16px;
+	width: 16px;
+	position: absolute;
+	z-index: 0;
+	background: transparent url(images/pipelineIndicator.png) no-repeat;
+	opacity: 0.55;
+}

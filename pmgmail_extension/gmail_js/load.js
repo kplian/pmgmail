@@ -1,12 +1,10 @@
+//guardarmos las direcciones los archivos que seran abiertos dsde la estencion
+var url
+
 if (window.location.href.indexOf("mail.google.com") != -1) {
 
 	// Adds a data DOM element that simply holds a string in an attribute, to be read
 	// by the injected scripts.
-
-	/*var $ =  function(selector) {
-	 return this.elements.body.find(selector);
-	 };*/
-
 	var addData = function(id, val) {
 		var body = document.getElementsByTagName("body")[0];
 		var div = document.createElement('div');
@@ -16,15 +14,14 @@ if (window.location.href.indexOf("mail.google.com") != -1) {
 		body.appendChild(div);
 	};
 
+	//Adding css
 	var addStyle = function(val) {
-
 		var fileref = document.createElement("link")
 		fileref.setAttribute("rel", "stylesheet")
 		fileref.setAttribute("type", "text/css")
 		fileref.setAttribute("href", val)
 
 		var body = document.getElementsByTagName("head")[0].appendChild(fileref);
-
 	};
 
 	// Loads a script
@@ -41,19 +38,24 @@ if (window.location.href.indexOf("mail.google.com") != -1) {
 		jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
 		document.getElementsByTagName('body')[0].appendChild(jq)
 
-		var jq = document.createElement('script');
-		jq.src = "http://code.jquery.com/ui/1.10.4/jquery-ui.js"
-		document.getElementsByTagName('body')[0].appendChild(jq)
-
 		var fb = document.createElement('script');
 		fb.src = "https://cdn.firebase.com/v0/firebase.js";
 		document.getElementsByTagName('body')[0].appendChild(fb);
 
-		addStyle(chrome.extension.getURL("css/estilo_menu.css"));
-		addStyle(chrome.extension.getURL("css/jquery-ui.css"));
+		//save TEMP  ata in DOM
+		addData("popup1", chrome.extension.getURL("popup1.html") + "#")
+		addData("popupPM", chrome.extension.getURL("html/popupPM.html") + "#")
+
+		//Adding css
+		addStyle(chrome.extension.getURL("css/main.css"));
+		addStyle(chrome.extension.getURL("css/jquery.css"));
+		addStyle(chrome.extension.getURL("css/jquery-ui-1.8.4.custom.css"));
 
 		loadScript(chrome.extension.getURL("lib/gmail.js"));
+
 		loadScript(chrome.extension.getURL("main.js"));
+		//loadScript('https://gema.kplian.com/gadget/jquery/lib/DataTables-1.9.4/media/js/jquery.dataTables.js');
+		//loadScript('https://gema.kplian.com/gadget/jquery/lib/js/jDataTable.js');
 
 		var port = chrome.runtime.connect();
 
@@ -112,9 +114,5 @@ if (window.location.href.indexOf("mail.google.com") != -1) {
 			}
 
 		}, false);
-		
-		//KP: Guardamos dirección del popup para poder abrirlo posteriormente
-		addData("popupPM", chrome.extension.getURL("html/popupPM.html") + "#")
-		
 	}
 }

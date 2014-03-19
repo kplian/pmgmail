@@ -1,10 +1,10 @@
 <script type="text/javascript">
 $("#signal-popup").ready(function() {
+    alert('ON READY POPUP')
 })
-</script>
+alert('al cargar el archivo del poppup')
 
-<script src="https://gema.kplian.com/gadget/jquery/lib/js/jDataTable.js" type="text/javascript"></script>
-<script src="https://gema.kplian.com/gadget/jquery/lib/DataTables-1.9.4/media/js/jquery.dataTables.js" type="text/javascript" language="javascript"></script>
+</script>
 
 <style>
 
@@ -423,38 +423,30 @@ $("#signal-popup").ready(function() {
 
 <section id="signal-popup">
 <section id="signal-watermark"></section>
-    <h1 id="h1">Process Maker for Gmail</h1>
-    <h2 id="h22">v1.0</h2>
+    <h1 id="h1">Bienvenido al PopPup</h1>
+    <h2 id="h22">Beta v1.1</h2>
+    <h3 id="h3"><span class="red_text">Note: Version Beta ^ 4 </span></h2>
 
     <section id="signal-row">
         <section id="signal-left">
-
+            <h2 id="h2">Setup</h2>
+            <h3 id="h3">Allow Signal to access your Gmail.</h3>
         </section>
         <section id="signal-right">
-			<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
-					<thead>
-						<tr>
-							<th width="20%"><h3>Rendering engine</h3></th>
-							<th width="25%">Browser</th>
-							<th width="25%">Platform(s)</th>
-							<th width="15%">Engine version</th>
-							<th width="15%">CSS grade</th>
-						</tr>
-					</thead>
-					<tbody>
-						
-					</tbody>
-				</table>
+            <p id="p">To get started, authorize Signal with your Google Account.</p>
+            <!-- <a href="#" id="authenticated">&#10004; Signal is authenticated</a> -->
+            <a href="#" id="signal-authenticate" onClick='window.open("https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=680129480321.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Ftrysignal.com%2Fauth%2F&state=signup&approval_prompt=auto&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile","Signal Auth","toolbar=1,scrollbars=1,location=1,statusbar=0,menubar=1,resizable=1,width=800,height=600")'>Authorize Signal</a>
         </section>
     </section>
     
     <section id="signal-row">
         <section id="signal-left">
-
+            <h2 id="h2">Usar LA extencion ..... </h2>
+            <h3 id="h3">It's so easy you can probably skip this.</h3>
         </section>
         
     </section>
 
-    <section id="signal-dismiss" onClick='$("#black_overlay").remove();$("#signal_auth_modal").remove();if($("#signal-authenticated").length == 1) { location.reload(); }'>Close</section>
+    <section id="signal-dismiss" onClick='$("#black_overlay").remove();$("#signal_auth_modal").remove();if($("#signal-authenticated").length == 1) { location.reload(); }'>Dismiss</section>
     
 </section>
