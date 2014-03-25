@@ -45,6 +45,10 @@ if (window.location.href.indexOf("mail.google.com") != -1) {
 		//save TEMP  ata in DOM
 		addData("popup1", chrome.extension.getURL("popup1.html") + "#")
 		addData("popupPM", chrome.extension.getURL("html/popupPM.html") + "#")
+		addData("popupOA", chrome.extension.getURL("html/popupOauth.html") + "#")
+		addData("data", chrome.extension.getURL("data.txt") + "#")
+		
+		addData("data_table",chrome.extension.getURL("lib/jquery.dataTables.min.js")+"#")
 
 		//Adding css
 		addStyle(chrome.extension.getURL("css/main.css"));
@@ -54,8 +58,7 @@ if (window.location.href.indexOf("mail.google.com") != -1) {
 		loadScript(chrome.extension.getURL("lib/gmail.js"));
 
 		loadScript(chrome.extension.getURL("main.js"));
-		//loadScript('https://gema.kplian.com/gadget/jquery/lib/DataTables-1.9.4/media/js/jquery.dataTables.js');
-		//loadScript('https://gema.kplian.com/gadget/jquery/lib/js/jDataTable.js');
+		//loadScript(chrome.extension.getURL("lib/jquery.dataTables.min.js"));
 
 		var port = chrome.runtime.connect();
 

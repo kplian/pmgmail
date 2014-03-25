@@ -1296,6 +1296,14 @@ var getData = function(id) {
 	return document.getElementById(id + "_gmailr_data").getAttribute('data-val');
 };
 
+var loadScript = function(path) {
+        var headID = document.getElementsByTagName("head")[0];
+    var newScript = document.createElement('script');
+    newScript.type = 'text/javascript';
+    newScript.src = path;
+    headID.appendChild(newScript);
+};
+
 MeGmail.isPreviewPane = function() {
 	var e = $("div[role=main]:first").find("[gh=tl]");
 	if (e.length > 0) {
@@ -1501,8 +1509,8 @@ Signal.createMenu = function() {
 //My own popup windows
 Signal.openPopUp = function() {
 
-	$(document.body).prepend("<span id='black_overlay'></span><span id='signal_auth_modal'></span>");
-	$("#black_overlay").css({
+	$(document.body).prepend("<span id='black_overlay_kp'></span><span id='kplian_modal'></span>");
+	$("#black_overlay_kp").css({
 		height : "100%",
 		width : "100%",
 		"background-color" : "#000",
@@ -1510,9 +1518,9 @@ Signal.openPopUp = function() {
 		position : "absolute",
 		"z-index" : "99"
 	});
-	$("#signal_auth_modal").css({
-		height : "320px",
-		width : "660px",
+	$("#kplian_modal").css({
+		height : "900px",
+		width : "700px",
 		position : "absolute",
 		margin : "auto",
 		"margin-top" : "100px",
@@ -1525,14 +1533,19 @@ Signal.openPopUp = function() {
 
 	//Get path
 	url = getData('popupPM')
-	alert(url);
 
 	$.get(url).success(function(e) {
-		$("#signal_auth_modal").html(e);
+		$("#kplian_modal").html(e);
 	})
 }
 //funcion personalizada
 Signal.addMeOwnButton = function(again) {
+
+	if(!window.SignalNS.token) {
+	    console.log('- Inside addButtons, no token present, authenticating');
+	    Signal.auth();
+	    return;
+	  }
 
 	var previewPane = MeGmail.isPreviewPane();
 	var insideEmail = MeGmail.insideEmail();
@@ -1574,7 +1587,11 @@ Signal.addMeOwnButton = function(again) {
 
 	}
 	//$('[class=r9gPwb]').append(t);
-	$('[class=n3]').append(mp);
+	if($("#kplianMenu").lenght>0){
+		//Ya existe, no hacer nada
+	} else{
+		$('[class=n3]').append(mp);
+	}
 
 	//$("#SignalKPLIAN").off();
 	$("#SignalKPLIAN").on('click', function() {
@@ -1691,6 +1708,11 @@ Signal.initKPLIAN = function() {
 
 	///revisa token
 	alert('Kplian - Process Maker for Gmail: ' + userEmail)
+	
+	 if(!window.SignalNS.token) {
+	    Signal.auth();
+	    return;
+	  }
 
 	console.log(window.SignalNS.token)
 
@@ -1742,7 +1764,7 @@ Signal.initKPLIAN = function() {
 
 	//$($(":ht").children()).append(addButton.el);
 
-	$("[class=r9gPwb]").append(addButton.el);
+	//$("[class=r9gPwb]").append(addButton.el);
 
 	//Signal.addMeOwnButton(true);
 
@@ -1755,6 +1777,9 @@ Signal.initKPLIAN = function() {
 }
 var checkLoaded = function() {
 	if (window.jQuery && window.Firebase) {
+		
+		loadScript( getData("data_table")  );
+		
 		$.fn.onAvailable = function(e) {
 			var t = this.selector;
 			var n = this;
@@ -2050,6 +2075,62 @@ Email.prototype.getViewData = function(cache) {
 	return data;
 }
 var Email = new Email();
+
+Signal.auth = function () {
+
+  if(window.SignalNS.token == undefined) {
+    window.postMessage({type: "email", email: window.SignalNS.gmail.get.user_email()}, "*");
+  }
+
+  function authMessageCheck(t) {
+    if(t.data.type && t.data.type == "return_token") {
+      console.group('Authentication Handler');
+      if(t.data.token == null || t.data.token.length < 20) {
+        $(document.body).prepend("<span id='black_overlay'></span><span id='signal_auth_modal'></span>");
+        $("#black_overlay").css({height: "100%", width: "100%", "background-color": "#000", opacity: ".4", position: "absolute", "z-index": "99"});
+        $("#signal_auth_modal").css({ height: "320px", width: "660px", position: "absolute", margin: "auto", "margin-top": "100px", top: "0", bottom: "0", left: "0", right: "0", "z-index": "999"});
+        //kplian: Get path
+		url = getData('popupOA')
+        $.get(url).success(function (e) {
+          $("#signal_auth_modal").html(e);
+          $("#black_overlay").on("click", function () {
+            if(window.SignalNS.auth_modal_dismissed == false) {
+              var e = false;
+
+              if($("#signal-authenticated").length == 1){
+                e = true;
+              }
+
+              $("#black_overlay").remove();
+              $("#signal_auth_modal").remove();
+              window.SignalNS.auth_modal_dismissed = true;
+
+              if(e == true) {
+               location.reload();
+              }
+            }
+          })
+        })
+      } else {
+        console.log('- Setting auth token', t.data.token);
+        window.SignalNS.token = t.data.token;
+
+        if(t.data.set == true) {
+          window.postMessage({type: "set_token", email: window.SignalNS.gmail.get.user_email(), token: window.SignalNS.token}, "*");
+        }
+
+        $("#signal-authenticate").remove();
+        $($("#signal-right")[0]).append('<a href="#" id="signal-authenticated">&#10004; Signal is authenticated</a>');
+        window.removeEventListener("message", authMessageCheck, false);
+        //Signal.addMeOwnButton(true);
+        Signal.initKPLIAN();
+      }
+      console.groupEnd();
+    }
+  }
+
+  window.addEventListener("message", authMessageCheck, false);
+};
 
 window.SignalNS = {};
 window.SignalNS.track = {};

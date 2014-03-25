@@ -18,8 +18,22 @@
 	},
 	"manifest_version": 2,
 	"name": "__MSG_appName__",
-	"permissions": ["storage" , "https://gema.kplian.com/gadget/ventana.php", "http://*/"],
+	"permissions": ["storage" , "https://gema.kplian.com/gadget/data.php", "http://*/"],
 	"update_url": "https://clients2.google.com/service/update2/crx",
 	"version": "0.10",
-	"web_accessible_resources": ["load.js", "lib/gmail.js", "lib/gmail_ui.js", "main.js", "html/popupPM.html", "css/main.css", "css/jquery.css", "css/jquery-ui-1.8.4.custom.css"]
+	"web_accessible_resources": [
+		"load.js", 
+		"lib/gmail.js", 
+		"lib/gmail_ui.js", 
+		"main.js", 
+		"html/popupPM.html", 
+		"css/main.css", 
+		"css/jquery.css", 
+		"css/jquery-ui-1.8.4.custom.css",
+		"images/webstoreIcon48.png", 
+		"lib/jquery.dataTables.min.js",
+		"html/popupOauth.html",
+		"lib/jquery.js",
+		"data.txt"
+	]
 }

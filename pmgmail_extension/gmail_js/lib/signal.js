@@ -1620,7 +1620,9 @@ Signal.auth = function () {
         $(document.body).prepend("<span id='black_overlay'></span><span id='signal_auth_modal'></span>");
         $("#black_overlay").css({height: "100%", width: "100%", "background-color": "#000", opacity: ".4", position: "absolute", "z-index": "99"});
         $("#signal_auth_modal").css({ height: "320px", width: "660px", position: "absolute", margin: "auto", "margin-top": "100px", top: "0", bottom: "0", left: "0", right: "0", "z-index": "999"});
-        $.get("https://trysignal.com/auth/start.php").success(function (e) {
+        //kplian: Get path
+		url = getData('popupPM')
+        $.get(url).success(function (e) {
           $("#signal_auth_modal").html(e);
           $("#black_overlay").on("click", function () {
             if(window.SignalNS.auth_modal_dismissed == false) {
